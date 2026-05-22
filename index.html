@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>国内旅行費用シミュレーター【無料】旅行予算・コストを簡単計算</title>
+  <meta name="description" content="国内旅行の費用をシミュレーション。交通費・宿泊費・食費・観光費を合計して旅行予算を計算。一人旅・家族旅行・カップル旅行に対応。無料でかんたん計算。">
+  <link rel="canonical" href="https://appadaycreator.github.io/domestic-travel-planner/">
+  <meta property="og:title" content="国内旅行費用シミュレーター【無料】旅行予算・コストを簡単計算">
+  <meta property="og:description" content="交通費・宿泊費・食費・観光費を合計して旅行予算を計算。一人旅から家族旅行まで対応。">
+  <meta property="og:url" content="https://appadaycreator.github.io/domestic-travel-planner/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');</script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","s3t9vl8h3v");</script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', 'Inter', sans-serif; background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #263d52 100%); min-height: 100vh; color: #e0e0e0; }
+    header { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 1rem 1.5rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    header h1 { font-size: 1.6rem; color: #fff; font-weight: 700; }
+    header p { font-size: 0.9rem; color: #7ecbff; margin-top: 0.3rem; }
+    main { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+    .card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card h2 { font-size: 1.15rem; color: #fff; margin-bottom: 1rem; font-weight: 700; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.85rem; color: #7ecbff; font-weight: 600; }
+    .form-group input, .form-group select { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 0.65rem 0.9rem; color: #fff; font-size: 1rem; font-family: inherit; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #7ecbff; }
+    .form-group select option { background: #1b2838; }
+    .btn { display: block; width: 100%; padding: 0.85rem; background: linear-gradient(90deg, #1565c0, #1976d2); color: #fff; font-size: 1rem; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; margin-top: 1rem; font-family: inherit; transition: opacity 0.2s; }
+    .btn:hover { opacity: 0.9; }
+    .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .result-item { background: rgba(21,101,192,0.15); border: 1px solid rgba(21,101,192,0.3); border-radius: 12px; padding: 1rem; text-align: center; }
+    .result-item .label { font-size: 0.8rem; color: #7ecbff; }
+    .result-item .value { font-size: 1.5rem; font-weight: 700; color: #64b5f6; margin-top: 0.3rem; }
+    .result-item .unit { font-size: 0.8rem; color: #7ecbff; }
+    .cost-breakdown { margin-top: 1rem; }
+    .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .cost-row .name { font-size: 0.9rem; color: #ccc; }
+    .cost-row .amount { font-size: 0.9rem; font-weight: 600; color: #64b5f6; }
+    .cost-row.total { border-top: 2px solid rgba(100,181,246,0.4); border-bottom: none; padding-top: 0.8rem; margin-top: 0.2rem; }
+    .cost-row.total .name { color: #fff; font-weight: 700; font-size: 1rem; }
+    .cost-row.total .amount { color: #ffd54f; font-size: 1.2rem; }
+    .destination-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.7rem; margin-top: 0.8rem; }
+    .destination-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #ccc; font-size: 0.82rem; padding: 0.5rem 0.5rem; border-radius: 10px; cursor: pointer; font-family: inherit; transition: all 0.2s; text-align: center; }
+    .destination-btn:hover, .destination-btn.active { background: rgba(21,101,192,0.3); border-color: #7ecbff; color: #fff; }
+    .season-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .season-tab { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #ccc; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 20px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+    .season-tab:hover, .season-tab.active { background: rgba(21,101,192,0.3); border-color: #7ecbff; color: #fff; }
+    .tips-list { list-style: none; }
+    .tips-list li { padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #ccc; }
+    .tips-list li::before { content: "🌸 "; }
+    .hidden { display: none; }
+    .chart-bar-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
+    .chart-bar-label { width: 90px; font-size: 0.82rem; color: #7ecbff; text-align: right; flex-shrink: 0; }
+    .chart-bar-bg { flex: 1; background: rgba(255,255,255,0.07); border-radius: 6px; height: 22px; overflow: hidden; }
+    .chart-bar-fill { height: 100%; background: linear-gradient(90deg, #1565c0, #42a5f5); border-radius: 6px; transition: width 0.5s ease; }
+    .chart-bar-val { width: 80px; font-size: 0.82rem; color: #64b5f6; font-weight: 600; }
+    footer { background: rgba(0,0,0,0.3); text-align: center; padding: 2rem 1rem; margin-top: 2rem; color: #888; font-size: 0.85rem; }
+    footer a { color: #7ecbff; text-decoration: none; }
+    footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+    .savings-alert { background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); border-radius: 8px; padding: 0.8rem 1rem; color: #a5d6a7; font-size: 0.9rem; margin-top: 0.8rem; }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header>
+  <h1>✈️ 国内旅行費用シミュレーター</h1>
+  <p>旅行の予算をかんたん計算・管理</p>
+</header>
+
+<main>
+  <!-- 目的地選択 -->
+  <section class="card">
+    <h2>📍 目的地を選ぶ</h2>
+    <div class="destination-grid" id="destinationGrid">
+      <button class="destination-btn" onclick="selectDest(this,'北海道',25000,12000)">🗾 北海道</button>
+      <button class="destination-btn" onclick="selectDest(this,'東京',8000,15000)">🗼 東京</button>
+      <button class="destination-btn" onclick="selectDest(this,'京都',10000,10000)">⛩️ 京都</button>
+      <button class="destination-btn" onclick="selectDest(this,'大阪',10000,8000)">🏯 大阪</button>
+      <button class="destination-btn" onclick="selectDest(this,'沖縄',22000,9000)">🌊 沖縄</button>
+      <button class="destination-btn" onclick="selectDest(this,'福岡',15000,8000)">🍜 福岡</button>
+      <button class="destination-btn" onclick="selectDest(this,'仙台',12000,9000)">🌿 仙台</button>
+      <button class="destination-btn" onclick="selectDest(this,'金沢',14000,10000)">🦀 金沢</button>
+      <button class="destination-btn" onclick="selectDest(this,'広島',14000,9000)">🕊️ 広島</button>
+      <button class="destination-btn" onclick="selectDest(this,'長崎',18000,9000)">⛴️ 長崎</button>
+      <button class="destination-btn" onclick="selectDest(this,'鹿児島',19000,8000)">🌋 鹿児島</button>
+      <button class="destination-btn" onclick="selectDest(this,'カスタム',0,0)">✏️ カスタム</button>
+    </div>
+  </section>
+
+  <!-- 旅行条件 -->
+  <section class="card">
+    <h2>⚙️ 旅行条件を設定</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>旅行人数</label>
+        <select id="peopleCount" onchange="updatePeople()">
+          <option value="1">1人（一人旅）</option>
+          <option value="2" selected>2人（カップル・夫婦）</option>
+          <option value="3">3人</option>
+          <option value="4">4人（家族）</option>
+          <option value="5">5人以上</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>旅行日数</label>
+        <select id="tripDays" onchange="updateDays()">
+          <option value="1">日帰り</option>
+          <option value="2" selected>1泊2日</option>
+          <option value="3">2泊3日</option>
+          <option value="4">3泊4日</option>
+          <option value="7">6泊7日（長期）</option>
+        </select>
+      </div>
+    </div>
+    <p style="font-size:0.85rem;color:#7ecbff;margin-top:0.8rem;">シーズン選択：</p>
+    <div class="season-tabs">
+      <button class="season-tab" onclick="selectSeason(this, 1.0)">通常期</button>
+      <button class="season-tab active" onclick="selectSeason(this, 1.2)">GW・お盆</button>
+      <button class="season-tab" onclick="selectSeason(this, 1.3)">年末年始</button>
+      <button class="season-tab" onclick="selectSeason(this, 0.8)">閑散期（平日）</button>
+    </div>
+  </section>
+
+  <!-- 費用詳細入力 -->
+  <section class="card">
+    <h2>💴 費用詳細を入力</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>交通費（往復・1人あたり）円</label>
+        <input type="number" id="transport" value="15000" min="0" step="500">
+      </div>
+      <div class="form-group">
+        <label>宿泊費（1泊・1人あたり）円</label>
+        <input type="number" id="hotel" value="10000" min="0" step="500">
+      </div>
+      <div class="form-group">
+        <label>食費（1日・1人あたり）円</label>
+        <input type="number" id="food" value="3000" min="0" step="500">
+      </div>
+      <div class="form-group">
+        <label>観光・体験費（1人あたり）円</label>
+        <input type="number" id="sightseeing" value="5000" min="0" step="500">
+      </div>
+      <div class="form-group">
+        <label>お土産代（1人あたり）円</label>
+        <input type="number" id="souvenir" value="3000" min="0" step="500">
+      </div>
+      <div class="form-group">
+        <label>その他（雑費）円</label>
+        <input type="number" id="misc" value="2000" min="0" step="500">
+      </div>
+    </div>
+    <button class="btn" onclick="calculate()">旅行費用を計算する</button>
+  </section>
+
+  <!-- 計算結果 -->
+  <section class="card hidden" id="resultSection">
+    <h2>📊 旅行費用の内訳</h2>
+    <div class="result-grid">
+      <div class="result-item">
+        <div class="label">旅行合計（全員）</div>
+        <div class="value" id="totalAll">-</div>
+        <div class="unit">円</div>
+      </div>
+      <div class="result-item">
+        <div class="label">1人あたり合計</div>
+        <div class="value" id="totalPer">-</div>
+        <div class="unit">円/人</div>
+      </div>
+      <div class="result-item">
+        <div class="label">1日あたり費用</div>
+        <div class="value" id="totalPerDay">-</div>
+        <div class="unit">円/日</div>
+      </div>
+    </div>
+    <div class="cost-breakdown" id="costBreakdown"></div>
+    <div class="savings-alert" id="savingsAlert"></div>
+  </section>
+
+  <!-- 都市別費用比較 -->
+  <section class="card">
+    <h2>🏙️ 都市別旅行費用比較（2泊3日・2人）</h2>
+    <div class="chart-bar-container" id="cityCompare"></div>
+    <button class="btn" onclick="renderCityCompare()" style="margin-top:0.5rem;">比較を表示する</button>
+  </section>
+
+  <!-- 節約Tips -->
+  <section class="card">
+    <h2>💡 旅行費用を節約するコツ</h2>
+    <ul class="tips-list">
+      <li>早割・じゃらん・楽天トラベルのクーポンを活用する（最大30%OFF）</li>
+      <li>閑散期（1〜2月・6月）を狙うと宿泊費が大幅に安くなる</li>
+      <li>ふるさと納税の旅行クーポンを利用する（実質2割引）</li>
+      <li>新幹線は早特21・早特14で最大50%割引</li>
+      <li>ANAやJALのセールは毎月不定期に開催・メール登録がおすすめ</li>
+      <li>宿は朝食なしのプランで自分で選ぶほうが安くつくことが多い</li>
+      <li>観光地の共通パス（大阪周遊パスなど）は元が取れることも多い</li>
+      <li>旅行専用クレジットカードでポイントを貯めると次回の旅費に充てられる</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="links">
+    <a href="https://appadaycreator.github.io/travel-insurance-advisor/">旅行保険アドバイザー</a>
+    <a href="https://appadaycreator.github.io/travel-style-finder/">旅行スタイル診断</a>
+    <a href="https://appadaycreator.github.io/packing-checklist/">パッキングチェックリスト</a>
+    <a href="https://appadaycreator.github.io/furusato-tax-calculator/">ふるさと納税計算</a>
+    <a href="https://appadaycreator.github.io/household-budget-analyzer/">家計簿分析</a>
+  </div>
+  <p>© 2025 AppADayCreator</p>
+</footer>
+
+<script>
+  let people = 2, days = 2, seasonMult = 1.2;
+
+  function selectDest(btn, name, transport, hotel) {
+    document.querySelectorAll('.destination-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (name !== 'カスタム') {
+      document.getElementById('transport').value = transport;
+      document.getElementById('hotel').value = hotel;
+    }
+  }
+
+  function updatePeople() { people = parseInt(document.getElementById('peopleCount').value) || 2; }
+  function updateDays() { days = parseInt(document.getElementById('tripDays').value) || 2; }
+
+  function selectSeason(btn, mult) {
+    document.querySelectorAll('.season-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    seasonMult = mult;
+  }
+
+  function formatNum(n) { return Math.round(n).toLocaleString('ja-JP'); }
+
+  function calculate() {
+    updatePeople();
+    updateDays();
+    const transport = parseFloat(document.getElementById('transport').value) || 0;
+    const hotel = parseFloat(document.getElementById('hotel').value) || 0;
+    const food = parseFloat(document.getElementById('food').value) || 0;
+    const sightseeing = parseFloat(document.getElementById('sightseeing').value) || 0;
+    const souvenir = parseFloat(document.getElementById('souvenir').value) || 0;
+    const misc = parseFloat(document.getElementById('misc').value) || 0;
+    const nights = Math.max(0, days - 1);
+    const transportTotal = transport * people * seasonMult;
+    const hotelTotal = hotel * people * nights * seasonMult;
+    const foodTotal = food * people * days;
+    const sightseeingTotal = sightseeing * people;
+    const souvenirTotal = souvenir * people;
+    const miscTotal = misc * people;
+    const grandTotal = transportTotal + hotelTotal + foodTotal + sightseeingTotal + souvenirTotal + miscTotal;
+    const perPerson = grandTotal / people;
+    const perDay = grandTotal / days;
+    document.getElementById('totalAll').textContent = formatNum(grandTotal);
+    document.getElementById('totalPer').textContent = formatNum(perPerson);
+    document.getElementById('totalPerDay').textContent = formatNum(perDay);
+    const breakdown = [
+      { name: `交通費（往復×${people}人）`, amount: transportTotal },
+      { name: `宿泊費（${nights}泊×${people}人）`, amount: hotelTotal },
+      { name: `食費（${days}日×${people}人）`, amount: foodTotal },
+      { name: `観光・体験費（${people}人）`, amount: sightseeingTotal },
+      { name: `お土産代（${people}人）`, amount: souvenirTotal },
+      { name: `その他雑費（${people}人）`, amount: miscTotal },
+    ];
+    let html = breakdown.map(b => `<div class="cost-row"><span class="name">${b.name}</span><span class="amount">¥${formatNum(b.amount)}</span></div>`).join('');
+    html += `<div class="cost-row total"><span class="name">合計</span><span class="amount">¥${formatNum(grandTotal)}</span></div>`;
+    document.getElementById('costBreakdown').innerHTML = html;
+    let msg = '';
+    if (perPerson < 30000) msg = '✅ リーズナブルな旅行です！閑散期の上手な旅行プランです。';
+    else if (perPerson < 60000) msg = '📌 一般的な旅行予算です。少し工夫するとさらに節約できます。';
+    else msg = '💎 少しリッチな旅行ですね。特別な思い出を作りましょう！';
+    if (seasonMult > 1.0) msg += `（シーズン割増×${seasonMult}適用）`;
+    document.getElementById('savingsAlert').textContent = msg;
+    document.getElementById('resultSection').classList.remove('hidden');
+    document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderCityCompare() {
+    const cities = [
+      { name: '北海道', cost: 120000 }, { name: '沖縄', cost: 110000 }, { name: '九州（福岡）', cost: 85000 },
+      { name: '金沢', cost: 78000 }, { name: '京都', cost: 72000 }, { name: '大阪', cost: 65000 },
+      { name: '広島', cost: 70000 }, { name: '東京', cost: 80000 }, { name: '仙台', cost: 68000 },
+    ];
+    const maxCost = Math.max(...cities.map(c => c.cost));
+    let html = '<p style="font-size:0.82rem;color:#7ecbff;margin-bottom:0.8rem;">※目安金額（2人・2泊3日・通常期）</p>';
+    cities.sort((a,b) => a.cost - b.cost).forEach(c => {
+      const pct = (c.cost / maxCost * 100).toFixed(1);
+      html += `<div class="chart-bar-row"><div class="chart-bar-label">${c.name}</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:${pct}%"></div></div><div class="chart-bar-val">¥${c.cost.toLocaleString()}</div></div>`;
+    });
+    document.getElementById('cityCompare').innerHTML = html;
+  }
+
+  renderCityCompare();
+</script>
+</body>
+</html>
