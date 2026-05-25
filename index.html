@@ -156,7 +156,7 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
   <p>旅行の予算をかんたん計算・管理</p>
 </header>
 
-<main>
+<main role="main">
   <!-- 目的地選択 -->
   <section class="card">
     <h2>📍 目的地を選ぶ</h2>
@@ -216,15 +216,15 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
     <div class="form-grid">
       <div class="form-group">
         <label>交通費（往復・1人あたり）円</label>
-        <input type="number" id="transport" value="15000" min="0" step="500">
+        <input type="number" id="transport" value="15000" min="0" step="500" aria-label="入力フォーム">
       </div>
       <div class="form-group">
         <label>宿泊費（1泊・1人あたり）円</label>
-        <input type="number" id="hotel" value="10000" min="0" step="500">
+        <input type="number" id="hotel" value="10000" min="0" step="500" aria-label="入力フォーム">
       </div>
       <div class="form-group">
         <label>食費（1日・1人あたり）円</label>
-        <input type="number" id="food" value="3000" min="0" step="500">
+        <input type="number" id="food" value="3000" min="0" step="500" aria-label="入力フォーム">
       </div>
       <div class="form-group">
         <label>観光・体験費（1人あたり）円</label>
